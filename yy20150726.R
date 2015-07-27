@@ -398,14 +398,21 @@ length(which(test$typename=="entertain"))
 
 
 
+
+
+
+
+
+
 #-----------------test hour data test with typename classify-------------------------
 
-load("yy201502.Rdata")
-yyall=tbl_df(yy201502)
-monthlist=c(201502:201502)
+#load("yy201502.Rdata")
+#yyall=tbl_df(yy201502)
 
+
+monthlist=c(201504:201506)
 houres.list=list()
-md=tbl_df(select(filter(yyall,mon %in% monthlist),date,typename,sid,liveuid,users)) #previous
+md=tbl_df(select(filter(yy,mon %in% monthlist),date,typename,sid,liveuid,users)) #previous
 type=names(table(md$typename))
 
 stime=as.POSIXlt(min(md$date))
@@ -447,9 +454,9 @@ for (n in 1:length(seqtime)) {
   
 }
   
-write.xlsx(file="./doc/yy_feb_data_mean_result_byhour.xlsx",meanuser)
-write.xlsx(file="./doc/yy_feb_data_uid_result_byhour.xlsx",uniqueuid)
-write.xlsx(file="./doc/yy_feb_data_sid_result_byhour.xlsx",uniquesid)
+write.xlsx(file=paste(max(monthlist),"yy_mean_result_byhour.xlsx"),meanuser)
+write.xlsx(file=paste(max(monthlist),"yy_uid_result_byhour.xlsx"),uniqueuid)
+write.xlsx(file=paste(max(monthlist),"yy_sid_result_byhour.xlsx"),uniquesid)
 
 
 
@@ -466,3 +473,4 @@ write.xlsx(file="./doc/yy_feb_data_sid_result_byhour.xlsx",uniquesid)
 
 
 save(file="./yy.Rdata",yy)
+
